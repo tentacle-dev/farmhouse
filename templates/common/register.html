@@ -1,0 +1,180 @@
+ <!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>User Registration</title>
+  <link rel="stylesheet" href="{% static 'temp/vendors/mdi/css/materialdesignicons.min.css' %}">
+  <link rel="stylesheet" href="{% static 'temp/vendors/base/vendor.bundle.base.css' %}">
+  <link rel="stylesheet" href="{% static 'temp/vendors/datatables.net-bs4/dataTables.bootstrap4.css' %}">
+  <link rel="stylesheet" href="{% static 'temp/css/style.css' %}">
+  <script>
+  function getsid(str)
+{
+if (window.XMLHttpRequest)
+  {
+  xmlhttp=new XMLHttpRequest();
+  }
+
+xmlhttp.onreadystatechange=function()
+  {
+  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+    document.getElementById("rose").innerHTML=xmlhttp.responseText;
+    }
+  }
+xmlhttp.open("GET","{% url 'checkusername' %}?id="+str,true);
+xmlhttp.send(null);
+}
+
+function getph(str)
+{
+
+if (window.XMLHttpRequest)
+  {
+  xmlhttp=new XMLHttpRequest();
+  }
+
+xmlhttp.onreadystatechange=function()
+  {
+  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+    document.getElementById("ph").innerHTML=xmlhttp.responseText;
+    }
+  }
+xmlhttp.open("GET","{% url 'checkph' %}?id="+str,true);
+xmlhttp.send(null);
+}
+  </script>
+</head>
+
+<body>
+        <div class="content-wrapper">
+		<div class="col-12 grid-margin">
+              <div class="card">
+                <div class="card-body">
+                  <h2><strong>REGISTRATION FORM</strong></h2></br>
+                  <strong><p style="color:red">
+                   
+
+				  <form class="form-sample" enctype="multipart/form-data" method="POST" action="{% url 'register' %}">
+                    {% csrf_token %}
+
+                    <div class="row">
+                      <div class="col-md-4">
+                        <div class="form-group row">
+					<select type="text"  name="role" required></td></tr>
+					<option value="1">Seller</option>
+					<option value="2">Customer</option></select></br></br>
+					</div></div></div>
+
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">Name:</label>
+                          <div class="col-sm-9">
+                            <input type="text" class="form-control" name="name" placeholder="if you are a seller use Store name" required />
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                      </div>
+                    </div>
+
+
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">Email Id:</label>
+                          <div class="col-sm-9">
+                            <input type="email" class="form-control"  name="email" placeholder="Email" required />
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">Phone Number:</label>
+                          <div class="col-sm-9">
+                            <input type="text" class="form-control" maxlength=10 name="phone" placeholder="Moblile number" required onchange="getph(this.value)">
+							<div id="ph" style="color:red"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">Address:</label>
+                          <div class="col-sm-9">
+                            <input type="text" class="form-control"  name="address" placeholder="Address" />
+                          </div>
+                        </div>
+                      </div>
+					<div class="col-md-6">
+                    <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Insert profile pic:</label>
+                    <div class="col-sm-9">
+                    <div class="form-group">
+                    <input type="file" name="pp">
+                    </div>
+                    </div>
+                    </div>
+                    </div></div>
+
+
+                    <div class="row">
+                      <div class="col-md-4">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">UserName</label>
+                          <div class="col-sm-9">
+                            <input type="text" class="form-control" name="uname" placeholder="User Namae" required onchange="getsid(this.value)">
+							<div id="rose"style="color:red;"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+
+                    <div class="row">
+                      <div class="col-md-4">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">PassWord</label>
+                          <div class="col-sm-9">
+                            <input type="password" class="form-control" id="psw" name="psw"
+pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
+                                   placeholder="Password" required/>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+
+
+					<div class="form-check form-check-flat form-check-primary">
+                      <label class="form-check-label">
+                        <input type="checkbox" class="form-check-input" required>
+                       I accept the terms and conditions
+                      </label>
+                    </div></br>
+
+				<button type="submit" class="btn btn-primary mr-2">Submit</button>
+
+                  </form>
+
+                </div></div>
+                  </br>
+                  <a href="{% url 'home' %}" style="text-decoration:none;color:white"><button class="btn btn-primary mr-2">Cancel</button></a>
+
+                </div>
+              </div>
+
+
+<script src="{% static 'temp/vendors/base/vendor.bundle.base.js' %}"></script>
+  <script src="{% static 'temp/js/template.js' %}"></script>
+</body>
+
+</html>

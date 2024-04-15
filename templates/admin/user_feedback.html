@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>feedback table</title>
+</head>
+<body>
+{%include 'admin/admin.html'%}
+                <div class="card-body">
+                  <h1><strong>{{feed}}</strong></h1>
+				  </br>
+                  <div class="table-responsive">
+                    <table class="table table-hover">
+					{% csrf_token %}
+                      <thead>
+                        <tr>
+                          <th><strong>Profile Picture</strong></th>
+                          <th><strong>Name</strong></th>
+                          <th><strong>Feedback</strong></th>
+                          <th><strong>Date of Posted</strong></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+            {%for user in users%}
+                        <tr>
+                          <td>
+                            <img src="/uploads/{{user.userid.profilepic}}" alt="profile"/>
+                          </td>
+
+                          <td>
+                            {{ user.userid.name }}
+                          </td>
+
+						  <td>
+                              <textarea class="form-control" rows="3"  readonly>{{user.feedback}}</textarea>
+                          </td>
+
+                          <td>
+                            {{ user.date }}
+                          </td>
+
+                        </tr>
+                        {%endfor%}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+</div></div>
+</body>
+</html>

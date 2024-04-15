@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<!-- Basic -->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Site Metas -->
+    <title>FarmFresh - Ecommerce Bootstrap 4 HTML Template</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Site Icons -->
+    <link rel="shortcut icon" href="{% static 'main/images/favicon.ico' %}" type="image/x-icon">
+    <link rel="apple-touch-icon" href="{% static 'main/images/apple-touch-icon.png' %}">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'main/css/bootstrap.min.css' %}">
+    <!-- Site CSS -->
+    <link rel="stylesheet" href="{% static 'main/css/style.css' %}">
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="{% static 'main/css/responsive.css' %}">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'main/css/custom.css' %}">
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+    <!-- Start Main Top -->
+    <header class="main-header">
+        <!-- Start Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-default bootsnav">
+            <div class="container">
+                <!-- Start Header Navigation -->
+                <div class="navbar-header">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fa fa-bars"></i>
+                </button>
+                    <a class="navbar-brand" href="{% url 'customer' %}"><img src="{% static 'main/images/logo.png' %}" class="logo" alt="" style="height: 100px;"></a>
+                </div>
+                <!-- End Header Navigation -->
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="navbar-menu">
+                    <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
+                        <li class="nav-item "><a class="nav-link" href="{% url 'customer' %}">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About Us</a></li>
+                        <li class="dropdown ">
+                            <a href="#" class="nav-link dropdown-toggle " data-toggle="dropdown">Orders</a>
+                            <ul class="dropdown-menu">
+								<li><a href="{% url 'pending_order' %}">Pending Orders</a></li>
+								<li><a href="{% url 'order_history' %}">Order History</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'gallery' %}">Gallery</a></li>
+                        <li class="nav-item active "><a class="nav-link" href="{% url 'view_cart' %}">My Cart</a></li>
+
+                        <li class="dropdown">
+                          <a href="#" class="nav-link dropdown-toggle " data-toggle="dropdown">{{ user.name }}</a>
+                          <ul class="dropdown-menu">
+                              <li><a href="{% url 'update_profile' %}">Edit Account</a></li>
+                              <li><a href="{% url 'change_psw' %}">Change Password</a></li>
+                              <li><a href="{% url 'logout' %}">Logout</a></li>
+
+                          </ul>
+                      </li>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+        </nav>
+        <!-- End Navigation -->
+    </header>
+    <!-- End Main Top -->
+    
+                <div class="card-body">
+                  <h1><strong>Cart</strong></h1></br>
+                  <div class="table-responsive">
+                    <table class="table table-hover">
+					{% csrf_token %}
+                      <thead>
+                        <tr>
+                          <th><strong>Product Picture</strong></th>
+						  <th><strong>Product name</strong></th>
+                          <th><strong>Date on Carted</strong></th>
+                          <th><strong>Availability</strong></th>
+                          <th><strong>Unit Price</strong></th>
+                          <th><strong>Total Price</strong></th>
+                          <th><strong>Quantity</strong></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+
+                        {%for u in p%}
+                        <tr>
+
+                          <td>
+                            <a class="cart" href="{% url 'view_productc' u.pid.id %}">
+                                <img src="/uploads/{{u.pid.p_pic}}" style="height:100px; width:100px; border-radius:8px" /></a>
+                          </td>
+
+                          <td>
+                              <a class="cart" href="{% url 'view_productc' u.pid.id %}">{{u.pid.pname}}</a>
+                          </td>
+
+                          <td>
+                            {{u.date}}
+                          </td>
+
+                            <td><label class="badge badge-success">
+                            {{u.pid.status}}</label>
+                          </td>
+
+                            <td>
+                           {{u.pid.sprice}}
+                          </td>
+
+                          <td>
+                           {{u.price}}
+                          </td>
+
+                          <td>
+                          <form method="POST" action="{%url 'update_qty' u.id%}">
+                            {% csrf_token %}
+                           <input  value="{{u.qty}}" min="1" max="20" name="qty"  type="number">
+                            <input type="submit" class="btn btn-primary mr-2 btn-sm" value="Update">
+                          </form></td>
+
+						  <td>
+                            <a href="{%url 'checkout_single' u.id%}" style="text-decoration:none;color:white"><button class="btn btn-primary mr-2 btn-sm">Buy</button></a>
+                          </td>
+                          <td>
+                            <a href="{%url 'delete_carted' u.id%}" style="text-decoration:none;color:white"><button class="btn btn-primary mr-2 btn-sm">Remove</button></a>
+                          </td>
+
+                        </tr>
+                        {%endfor%}
+
+                      </tbody>
+                    </table>
+                  </div>
+
+</br></br></br></br>
+<div class="col-md-6">
+                    <div class="form-group row">
+                  <div class="table-responsive">
+                    <table class="table ">
+					{% csrf_token %}
+
+                        <tr>
+						<td>
+                            <h2><strong>Your Order</strong></h2>
+                          </td>
+                        </tr>
+
+						<tr>
+						<td><strong>
+                            Total Price:</strong>
+                          </td>
+                          <td class="py-1">
+                            {{total}}
+                          </td>
+                        </tr>
+
+						<tr>
+						<td><strong>
+                            Delivary Charge:</strong>
+                          </td>
+                          <td class="py-1">
+                            50
+                          </td>
+                        </tr>
+
+                      <tr>
+						<td><strong>
+                            Grand Total:</strong>
+                          </td>
+                          <td class="py-1">
+                            {{gtotal}}
+                          </td>
+                        </tr>
+
+                        </br>
+                      <tr>
+						<td>
+                            <a href="{%url 'checkout_group'  %}" style="text-decoration:none;color:white"><button class="btn btn-primary mr-2 btn-sm">Place Order</button></a>
+                        </td>
+
+					</tr>
+                    </table>
+                      <strong><p style="color:red">the products which are Not Available will be Excluded from Placing Order</p></strong>
+                  </div>
+                </div>
+              </div></div>
+
+</div></div>
+<!-- Start Footer  -->
+<footer>
+  <div class="footer-main">
+      <div class="container">
+  <div class="row">
+    <div class="col-lg-4 col-md-12 col-sm-12">
+      <div class="footer-top-box">
+        <h3>Business Time</h3>
+        <ul class="list-time">
+          <li>Monday - Friday: 08.00am to 05.00pm</li> <li>Saturday: 10.00am to 08.00pm</li> <li>Sunday: <span>Closed</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-lg-4 col-md-12 col-sm-12">
+      <div class="footer-top-box">
+        <h3>Newsletter</h3>
+        <form class="newsletter-box">
+          <div class="form-group">
+            <input class="" type="email" name="Email" placeholder="Email Address*" />
+            <i class="fa fa-envelope"></i>
+          </div>
+          <button class="btn hvr-hover" type="submit">Submit</button>
+        </form>
+      </div>
+    </div>
+    <div class="col-lg-4 col-md-12 col-sm-12">
+      <div class="footer-top-box">
+        <h3>Social Media</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <ul>
+                          <li><a href="#"><i class="fab fa-facebook" aria-hidden="true"></i></a></li>
+                          <li><a href="#"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
+                          <li><a href="#"><i class="fab fa-linkedin" aria-hidden="true"></i></a></li>
+                          <li><a href="#"><i class="fab fa-google-plus" aria-hidden="true"></i></a></li>
+                          <li><a href="#"><i class="fa fa-rss" aria-hidden="true"></i></a></li>
+                          <li><a href="#"><i class="fab fa-pinterest-p" aria-hidden="true"></i></a></li>
+                          <li><a href="#"><i class="fab fa-whatsapp" aria-hidden="true"></i></a></li>
+                      </ul>
+      </div>
+    </div>
+  </div>
+  <hr>
+          <div class="row">
+              <div class="col-lg-4 col-md-12 col-sm-12">
+                  <div class="footer-widget">
+                      <h4>About Freshshop</h4>
+                      <p>Step into our virtual marketplace where the bounty of the farm meets the convenience of modern technology. Whether you're a seasoned farmer looking to showcase your harvest or a discerning customer seeking the freshest produce and artisanal goods, FarmHouse is your destination</p> 
+       
+                  </div>
+              </div>
+              <div class="col-lg-4 col-md-12 col-sm-12">
+                  <div class="footer-link">
+                      <h4>Information</h4>
+                      <ul>
+                        <li><a href="{% url 'about' %}">About Us</a></li>
+                        <li><a href="{% url 'gallery' %}">Gallery</a></li>
+                        <li><a href="{% url 'view_cart' %}">Cart</a></li>
+                        <li><a href="{% url 'order_history' %}">Order History</a></li>
+                        <li><a href="{% url 'update_profile' %}">Edit Account</a></li>
+                        <li><a href="{% url 'change_psw' %}">Change Password</a></li>
+                      </ul>
+                  </div>
+              </div>
+              <div class="col-lg-4 col-md-12 col-sm-12">
+                  <div class="footer-link-contact">
+                      <h4>Contact Us</h4>
+                      <ul>
+                          <li>
+                              <p><i class="fas fa-map-marker-alt"></i>Address: Forest Parkway Dr <br>North York,<br> KS 67213 </p>
+                          </li>
+                          <li>
+                              <p><i class="fas fa-phone-square"></i>Phone: <a href="tel:+1-888705770">+1-888 705 770</a></p>
+                          </li>
+                          <li>
+                              <p><i class="fas fa-envelope"></i>Email: <a href="mailto:contactinfo@gmail.com">contactinfo@gmail.com</a></p>
+                          </li>
+                      </ul>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</footer>
+<!-- End Footer  -->
+
+<!-- Start copyright  -->
+<div class="footer-copyright">
+  <p class="footer-company">All Rights Reserved. &copy; 2024 <a href="#">FarmHouse</a>
+      <a href="https://html.design/">html design</a></p>
+</div>
+<!-- End copyright  -->
+
+<a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
+
+</body>
+
+<!-- ALL JS FILES -->
+<script src="{% static 'main/js/jquery-3.2.1.min.js' %}"></script>
+<script src="{% static 'main/js/popper.min.js' %}"></script>
+<script src="{% static 'main/js/bootstrap.min.js' %}"></script>
+<!-- ALL PLUGINS -->
+<script src="{% static 'main/js/jquery.superslides.min.js' %}"></script>
+<script src="{% static 'main/js/bootstrap-select.js' %}"></script>
+<script src="{% static 'main/js/inewsticker.js' %}"></script>
+<script src="{% static 'main/js/bootsnav.js.' %}"></script>
+<script src="{% static 'main/js/images-loded.min.js' %}"></script>
+<script src="{% static 'main/js/isotope.min.js' %}"></script>
+<script src="{% static 'main/js/owl.carousel.min.js' %}"></script>
+<script src="{% static 'main/js/baguetteBox.min.js' %}"></script>
+<script src="{% static 'main/js/form-validator.min.js' %}"></script>
+<script src="{% static 'main/js/contact-form-script.js' %}"></script>
+<script src="{% static 'main/js/custom.js' %}"></script>
+</body>
+
+</html>

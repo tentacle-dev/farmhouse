@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>oder details</title>
+</head>
+<body>
+{%include 'admin/admin.html'%}
+                <div class="card-body">
+                  <h1><strong>Oder Details</strong></h1></br>
+                  <h4><strong>Total Transaction Amount : {{total}}</strong></h4></br>
+                  <table>
+	<form align="center " method="POST" action="view_order_admin_post">
+      {% csrf_token %}
+<tr><td>
+<select  name="month">
+<option value="">Select a Month</option>
+<option value="1">January</option>
+<option value="2">February</option>
+<option value="3">March</option>
+<option value="4">April</option>
+<option value="5">May</option>
+<option value="6">June</option>
+<option value="7">July</option>
+<option value="8">August</option>
+<option value="9">September</option>
+<option value="10">October</option>
+<option value="11">November</option>
+<option value="12">December</option>
+</select>
+  <input type="number" name="year" value="2021" min="2021">
+<input type="submit"  class="btn btn-primary mr-2 btn-sm" value="Search"></td></tr></form></table></br>
+
+                  <div class="table-responsive">
+                    <table class="table table-hover">
+					{% csrf_token %}
+                      <thead>
+                        <tr>
+                          <th><strong>Customer Name</strong></th>
+                          <th><strong>Seller Name</strong></th>
+						  <th><strong>Product name</strong></th>
+                          <th><strong>Qunantity</strong></th>
+                          <th><strong>Seller Adderss</strong></th>
+                          <th><strong>Date</strong></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+
+                        {%for u in users%}
+                        <tr>
+
+                          <td>
+                            {{u.cid.name}}
+                          </td>
+
+                          <td>
+                           {{u.sid.name}}
+                          </td>
+
+                          <td>
+                            {{u.pid.pname}}
+                          </td>
+
+                          <td>
+                            {{u.qty}}
+                          </td>
+
+                            <td>
+                            {{u.sid.address}}
+                          </td>
+
+                           <td>
+                            {{u.sdate}}
+                          </td>
+
+						  <td>
+                            <a href="{%url 'customer_order_details_admin' u.id%}" style="text-decoration:none;color:white"><button class="btn btn-primary mr-2 btn-sm">View</button></a>
+                          </td>
+                          <td>
+
+                        </tr>
+                        {%endfor%}
+
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+</div></div>
+</body>
+
+</html>

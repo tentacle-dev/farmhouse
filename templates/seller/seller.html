@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Seller Dashboard</title>
+  <link rel="stylesheet" href="{% static 'temp/vendors/mdi/css/materialdesignicons.min.css' %}">
+  <link rel="stylesheet" href="{% static 'temp/vendors/base/vendor.bundle.base.css' %}">
+  <link rel="stylesheet" href="{% static 'temp/vendors/datatables.net-bs4/dataTables.bootstrap4.css' %}">
+  <link rel="stylesheet" href="{% static 'temp/css/style.css' %}">
+
+</head>
+
+<body>
+<div class="container-scroller">
+    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+      <div class="navbar-brand-wrapper d-flex justify-content-center">
+        <div class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100">
+          <a class="navbar-brand brand-logo" href="{% url 'admin1' %}"><strong>FarmHouse </strong> </a>
+          <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+            <span class="mdi mdi-sort-variant"></span>
+          </button>
+        </div>
+      </div>
+      <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+
+        <ul class="navbar-nav navbar-nav-right">
+		    <li class="nav-item nav-profile dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
+            <img src="/uploads/{{user.profilepic}}" alt="profile"/>
+            <span class="nav-profile-name">{{ user.name }}</span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
+            <a class="dropdown-item" href="{% url 'change_psw' %}">
+			<i class="mdi mdi-settings text-primary"></i>
+			Change Password
+		    </a>
+            <a href="{% url 'logout' %}" class="dropdown-item">
+		    <i class="mdi mdi-logout text-primary"></i>
+			Logout
+            </a>
+            </div>
+          </li>
+        </ul>
+
+      </div>
+    </nav>
+
+
+	  <div class="container-fluid page-body-wrapper">
+      <nav class="sidebar sidebar-offcanvas" id="sidebar">
+        <ul class="nav">
+
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'product_dashs' %}">
+              <i class="mdi mdi-home menu-icon"></i>
+              <span class="menu-title">Dashboard</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'insert_product' %}">
+              <i class="mdi mdi-border-color menu-icon"></i>
+              <span class="menu-title">Add Products</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="{%url 'accept_order' %}">
+              <i class="mdi mdi-clipboard-check menu-icon"></i>
+              <span class="menu-title">Accept Orders</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="{%url 'order_details' %}">
+              <i class="mdi mdi-cart-outline menu-icon"></i>
+              <span class="menu-title">View Order & Report</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="{%url 'accept_rejected' %}">
+              <i class="mdi mdi-close-box menu-icon"></i>
+              <span class="menu-title">Rejected Oders</span>
+            </a>
+          </li>
+
+
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'update_profile' %}">
+              <i class="mdi mdi-account-key menu-icon"></i>
+              <span class="menu-title">Edit Account</span>
+            </a>
+          </li>
+
+
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'feedback' %}">
+              <i class="mdi mdi-comment-multiple-outline menu-icon"></i>
+              <span class="menu-title">Add Feedbacks</span>
+            </a>
+          </li>
+
+        </ul>
+      </nav>
+
+  <script src="{% static 'temp/vendors/base/vendor.bundle.base.js' %}"></script>
+  <script src="{% static 'temp/vendors/chart.js/Chart.min.js' %}"></script>
+  <script src="{% static 'temp/vendors/datatables.net/jquery.dataTables.js' %}"></script>
+  <script src="{% static 'temp/vendors/datatables.net-bs4/dataTables.bootstrap4.js' %}"></script>
+  <script src="{% static 'temp/js/off-canvas.js' %}"></script>
+  <script src="{% static 'temp/js/hoverable-collapse.js' %}"></script>
+  <script src="{% static 'temp/js/template.js' %}"></script>
+  <script src="{% static 'temp/js/dashboard.js' %}"></script>
+  <script src="{% static 'temp/js/data-table.js' %}"></script>
+  <script src="{% static 'temp/js/jquery.dataTables.js' %}"></script>
+  <script src="{% static 'temp/js/dataTables.bootstrap4.js' %}"></script>
+  <script src="{% static 'temp/js/jquery.cookie.js' %}" type="text/javascript"></script>
+</body>
+
+</html>
+

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>customer_history</title>
+</head>
+<body>
+{%include 'admin/admin.html'%}
+
+</body>
+
+<div class="card-body">
+                  <h2><strong>Customer History of : {{name}}</strong></h2></br>
+    <h4><strong>Total Transaction Amount : {{total}} (transportion charge not included)</strong></h4></br>
+                  <div class="table-responsive">
+                    <table class="table table-hover">
+					{% csrf_token %}
+                      <thead>
+                        <tr>
+                          <th><strong>Product Picture</strong></th>
+						  <th><strong>Product name</strong></th>
+                          <th><strong>Date of Ordered</strong></th>
+                            <th><strong>Unit Price</strong></th>
+                          <th><strong>Unit Quantity</strong></th>
+                          <th><strong>Quantity</strong></th>
+                          <th><strong>Total Price</strong></th>
+                          <th><strong>Bought From</strong></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+
+                        {%for u in p%}
+                        <tr>
+
+                          <td>
+                            <img src="/uploads/{{u.pid.p_pic}}" style="height:100px; width:100px; border-radius:8px" />
+                          </td>
+
+                          <td>
+                           {{u.pid.pname}}
+                          </td>
+
+                          <td>
+                            {{u.sdate}}
+                          </td>
+
+                            <td>
+                           {{u.pid.sprice}}
+                          </td>
+
+                          <td>
+                           {{u.pid.qty}}
+                          </td>
+
+                             <td>
+                           {{u.qty}}
+                          </td>
+
+                          <td>
+                           {{u.price}}
+                          </td>
+
+                          <td>
+                            {{u.sid.name}}
+                          </td>
+
+
+                        </tr>
+                        {%endfor%}
+
+                      </tbody>
+                    </table>
+                  </div>
+</div>
+
+</div></div>
+
+</html>

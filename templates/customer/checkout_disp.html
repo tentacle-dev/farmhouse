@@ -1,0 +1,79 @@
+ <!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Display Page</title>
+
+  <style>
+  .c{
+    height: auto;
+    width: auto;
+
+    position: fixed;
+    top: 30%;
+    left: 50%;
+    margin-top: -100px;
+    margin-left: -250px;}
+  </style>
+
+</head>
+
+<body>
+{%include 'customer/customer.html'%}
+
+              <div class='c'>
+                  <h1 align='center'><strong>Oder Placed Sucessfully</strong></h1></br>
+                  <div class="table-responsive">
+                    <table class="table ">
+					{% csrf_token %}
+
+						<tr>
+						<td><strong>
+                            Name</strong>
+                          </td>
+                          <td class="py-1">
+                            {{py.pcid.name}}
+                          </td>
+                        </tr>
+
+
+
+						<tr>
+						<td><strong>
+                            Checkout Amount
+                        </strong></td>
+                          <td class="py-1">
+                            {{py.money}}
+                          </td>
+                        </tr>
+
+
+						<tr>
+						<td><strong>
+                           Odered Date</strong>
+                          </td>
+                          <td class="py-1">
+                            {{py.date}}
+                          </td>
+                        </tr>
+
+						<tr>
+						<td><strong>
+                           The Product(s) will Deliver to you Shortly</strong>
+                          </td>
+                        </tr>
+
+                    </table>
+                  </div>
+				  </br>
+			  <div align='center'><a href="{%url 'admin1' %}" style="text-decoration:none;color:white"><button class="btn btn-primary mr-2 btn-sm">close</button></a></div>
+                </div>
+
+
+
+</div></div>
+</body>
+
+</html>

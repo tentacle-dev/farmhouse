@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<!-- Basic -->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Site Metas -->
+    <title>FarmHouse - Ecommerce Bootstrap 4 HTML Template</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Site Icons -->
+    <link rel="shortcut icon" href="{% static 'main/images/favicon.ico' %}" type="image/x-icon">
+    <link rel="apple-touch-icon" href="{% static 'main/images/apple-touch-icon.png' %}">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'main/css/bootstrap.min.css' %}">
+    <!-- Site CSS -->
+    <link rel="stylesheet" href="{% static 'main/css/style.css' %}">
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="{% static 'main/css/responsive.css' %}">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'main/css/custom.css' %}">
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+    <!-- Start Main Top -->
+    <header class="main-header">
+        <!-- Start Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-default bootsnav">
+            <div class="container">
+                <!-- Start Header Navigation -->
+                <div class="navbar-header">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fa fa-bars"></i>
+                </button>
+                    <a class="navbar-brand" href="{% url 'customer' %}"><img src="{% static 'C:\Users\G UTHRABATHY\Documents\market\static\assets\images\logo.png' %}" class="logo" alt="" style="height: 100px;"></a>
+                </div>
+                <!-- End Header Navigation -->
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="navbar-menu">
+                    <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
+                        <li class="nav-item "><a class="nav-link" href="{% url 'customer' %}">Home</a></li>
+                        <li class="nav-item active"><a class="nav-link" href="{% url 'about' %}">About Us</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="nav-link dropdown-toggle " data-toggle="dropdown">Orders</a>
+                            <ul class="dropdown-menu">
+								<li><a href="{% url 'pending_order' %}">Pending Orders</a></li>
+								<li><a href="{% url 'order_history' %}">Orders History</a></li>
+                            </ul>
+                        </li>
+                        
+                        <li class="nav-item"><a class="nav-link" href="{% url 'view_cart' %}">My Cart</a></li>
+
+                        <li class="dropdown">
+                          <a href="#" class="nav-link dropdown-toggle " data-toggle="dropdown">{{ user.name }}</a>
+                          <ul class="dropdown-menu">
+                              <li><a href="{% url 'update_profile' %}">Edit Account</a></li>
+                              <li><a href="{% url 'change_psw' %}">Change Password</a></li>
+                              <li><a href="{% url 'logout' %}">Logout</a></li>
+
+                          </ul>
+                      </li>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+        </nav>
+        <!-- End Navigation -->
+    </header>
+    <!-- End Main Top -->
+
+
+<!-- Start About Page  -->
+<div class="about-box-main">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="banner-frame"> <img class="img-fluid" src="{% static 'main/images/about-img.jpg' %}" alt="" />
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <h2 class="noo-sh-title-top ff">We are <span>FarmFresh</span></h2>
+                <p>We believe in the power of technology to revolutionize the way we buy and sell agricultural products. By leveraging our innovative e-commerce platform, farmers gain access to a wider market reach while sellers can easily source the freshest produce directly from the source.
+
+                    Transparency and trust are at the heart of what we do. We provide detailed profiles for each farmer, allowing sellers to learn about their farming practices, certifications, and the stories behind their products. This level of transparency fosters a sense of connection and trust between all parties involved.
+                    
+                    With a commitment to sustainability, we prioritize environmentally friendly farming methods and support farmers who share our vision for a greener future. Through our platform, we aim to promote responsible consumption and reduce the carbon footprint of the agricultural supply chain.
+                    
+                    Whether you're a farmer looking to expand your reach or a seller seeking premium-quality produce, FarmFresh is your go-to destination. Join us in cultivating a brighter, more sustainable future for agriculture – one connection at a time.</p>
+               >
+                <a class="btn hvr-hover" href="#">Read More</a>
+            </div>
+        </div>
+        <div class="row my-5">
+            <div class="col-sm-6 col-lg-4">
+                <div class="service-block-inner">
+                    <h3>We are Trusted</h3>
+                    <p>At FarmFresh, trust is not just a word – it's a promise. We strive to earn and maintain the trust of our community through honesty, integrity, and a relentless dedication to excellence. Join us and experience the peace of mind that comes from knowing you're in good hands with FarmFresh. </p>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-4">
+                <div class="service-block-inner">
+                    <h3>We are Professional</h3>
+                    <p>At FarmFresh, professionalism is not just a standard – it's a mindset. We hold ourselves to the highest professional standards, consistently delivering exceptional service and value to our customers and partners. Join us and experience the professionalism that sets FramFresh apart from the rest.
+
+
+
+                    </p>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-4">
+                <div class="service-block-inner">
+                    <h3>We are Expert</h3>
+                    <p>Our commitment to expertise extends to our network of farmers and sellers. We work closely with them to share best practices, provide guidance on market trends, and offer tailored solutions to help them succeed in today's competitive landscape. </p>
+                </div>
+            </div>
+        </div>
+        <div class="row my-4">
+            <div class="col-12">
+                <h2 class="noo-sh-title">Meet Our Team</h2>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+                <div class="hover-team">
+                    <div class="our-team"> <img src="{% static 'main/images/img-2.jpg' %}" alt="" />
+                        <div class="team-content">
+                            <h3 class="title">Sushma</h3> <span class="post">Web Developer</span> </div>
+                        <ul class="social">
+                            <li>
+                                <a href="#" class="fab fa-facebook"></a>
+                            </li>
+                            <li>
+                                <a href="#" class="fab fa-twitter"></a>
+                            </li>
+                            <li>
+                                <a href="#" class="fab fa-google-plus"></a>
+                            </li>
+                            <li>
+                                <a href="#" class="fab fa-youtube"></a>
+                            </li>
+                        </ul>
+                        <div class="icon"> <i class="fa fa-plus" aria-hidden="true"></i> </div>
+                    </div>
+                    <div class="team-description">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent urna diam, maximus ut ullamcorper quis, placerat id eros. Duis semper justo sed condimentum rutrum. Nunc tristique purus turpis. Maecenas vulputate. </p>
+                    </div>
+                    <hr class="my-0"> </div>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+                <div class="hover-team">
+                    <div class="our-team"> <img src="{% static 'main/images/img-1.jpg ' %}" alt="" />
+                        <div class="team-content">
+                            <h3 class="title">Thanush</h3> <span class="post">Web Developer</span> </div>
+                        <ul class="social">
+                            <li>
+                                <a href="#" class="fab fa-facebook"></a>
+                            </li>
+                            <li>
+                                <a href="#" class="fab fa-twitter"></a>
+                            </li>
+                            <li>
+                                <a href="#" class="fab fa-google-plus"></a>
+                            </li>
+                            <li>
+                                <a href="#" class="fab fa-youtube"></a>
+                            </li>
+                        </ul>
+                        <div class="icon"> <i class="fa fa-plus" aria-hidden="true"></i> </div>
+                    </div>
+                    <div class="team-description">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent urna diam, maximus ut ullamcorper quis, placerat id eros. Duis semper justo sed condimentum rutrum. Nunc tristique purus turpis. Maecenas vulputate. </p>
+                    </div>
+                    <hr class="my-0"> </div>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+                <div class="hover-team">
+                    <div class="our-team"> <img src="{% static 'main/images/img-2.jpg' %}" alt="" />
+                        <div class="team-content">
+                            <h3 class="title">Sneha</h3> <span class="post">Web Developer</span> </div>
+                        <ul class="social">
+                            <li>
+                                <a href="#" class="fab fa-facebook"></a>
+                            </li>
+                            <li>
+                                <a href="#" class="fab fa-twitter"></a>
+                            </li>
+                            <li>
+                                <a href="#" class="fab fa-google-plus"></a>
+                            </li>
+                            <li>
+                                <a href="#" class="fab fa-youtube"></a>
+                            </li>
+                        </ul>
+                        <div class="icon"> <i class="fa fa-plus" aria-hidden="true"></i> </div>
+                    </div>
+                    <div class="team-description">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent urna diam, maximus ut ullamcorper quis, placerat id eros. Duis semper justo sed condimentum rutrum. Nunc tristique purus turpis. Maecenas vulputate. </p>
+                    </div>
+                    <hr class="my-0"> </div>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+                <div class="hover-team">
+                    <div class="our-team"> <img src="{% static 'main/images/img-2.jpg' %}" alt="" />
+                        <div class="team-content">
+                            <h3 class="title">Pavani</h3> <span class="post">Web Developer</span> </div>
+                        <ul class="social">
+                            <li>
+                                <a href="#" class="fab fa-facebook"></a>
+                            </li>
+                            <li>
+                                <a href="#" class="fab fa-twitter"></a>
+                            </li>
+                            <li>
+                                <a href="#" class="fab fa-google-plus"></a>
+                            </li>
+                            <li>
+                                <a href="#" class="fab fa-youtube"></a>
+                            </li>
+                        </ul>
+                        <div class="icon"> <i class="fa fa-plus" aria-hidden="true"></i> </div>
+                    </div>
+                    <div class="team-description">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent urna diam, maximus ut ullamcorper quis, placerat id eros. Duis semper justo sed condimentum rutrum. Nunc tristique purus turpis. Maecenas vulputate. </p>
+                    </div>
+                    <hr class="my-0"> </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End About Page -->
+
+
+<!-- Start Instagram Feed  -->
+<div class="instagram-box">
+    <div class="main-instagram owl-carousel owl-theme">
+        <div class="item">
+            <div class="ins-inner-box">
+                <img src="{% static 'main/images/instagram-img-01.jpg' %}" alt="" />
+                <div class="hov-in">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="ins-inner-box">
+                <img src="{% static 'main/images/instagram-img-02.jpg' %}" alt="" />
+                <div class="hov-in">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="ins-inner-box">
+                <img src="{% static 'main/images/instagram-img-03.jpg' %}" alt="" />
+                <div class="hov-in">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="ins-inner-box">
+                <img src="{% static 'main/images/instagram-img-04.jpg' %}" alt="" />
+                <div class="hov-in">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="ins-inner-box">
+                <img src="{% static 'main/images/instagram-img-05.jpg' %}" alt="" />
+                <div class="hov-in">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="ins-inner-box">
+                <img src="{% static 'main/images/instagram-img-06.jpg' %}" alt="" />
+                <div class="hov-in">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="ins-inner-box">
+                <img src="{% static 'main/images/instagram-img-07.jpg' %}" alt="" />
+                <div class="hov-in">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="ins-inner-box">
+                <img src="{% static 'main/images/instagram-img-08.jpg' %}" alt="" />
+                <div class="hov-in">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="ins-inner-box">
+                <img src="{% static 'main/images/instagram-img-09.jpg' %}" alt="" />
+                <div class="hov-in">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="ins-inner-box">
+                <img src="{% static 'main/images/instagram-img-05.jpg' %}" alt="" />
+                <div class="hov-in">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Instagram Feed  -->
+
+<!-- Start Footer  -->
+<footer>
+  <div class="footer-main">
+      <div class="container">
+  <div class="row">
+    <div class="col-lg-4 col-md-12 col-sm-12">
+      <div class="footer-top-box">
+        <h3>Business Time</h3>
+        <ul class="list-time">
+          <li>Monday - Friday: 08.00am to 05.00pm</li> <li>Saturday: 10.00am to 08.00pm</li> <li>Sunday: <span>Closed</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-lg-4 col-md-12 col-sm-12">
+      <div class="footer-top-box">
+        <h3>Newsletter</h3>
+        <form class="newsletter-box">
+          <div class="form-group">
+            <input class="" type="email" name="Email" placeholder="Email Address*" />
+            <i class="fa fa-envelope"></i>
+          </div>
+          <button class="btn hvr-hover" type="submit">Submit</button>
+        </form>
+      </div>
+    </div>
+    <div class="col-lg-4 col-md-12 col-sm-12">
+      <div class="footer-top-box">
+        <h3>Social Media</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <ul>
+                          <li><a href="#"><i class="fab fa-facebook" aria-hidden="true"></i></a></li>
+                          <li><a href="#"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
+                          <li><a href="#"><i class="fab fa-linkedin" aria-hidden="true"></i></a></li>
+                          <li><a href="#"><i class="fab fa-google-plus" aria-hidden="true"></i></a></li>
+                          <li><a href="#"><i class="fa fa-rss" aria-hidden="true"></i></a></li>
+                          <li><a href="#"><i class="fab fa-pinterest-p" aria-hidden="true"></i></a></li>
+                          <li><a href="#"><i class="fab fa-whatsapp" aria-hidden="true"></i></a></li>
+                      </ul>
+      </div>
+    </div>
+  </div>
+  <hr>
+          <div class="row">
+              <div class="col-lg-4 col-md-12 col-sm-12">
+                  <div class="footer-widget">
+                      <h4>About Freshshop</h4>
+                      <p>Step into our virtual marketplace where the bounty of the farm meets the convenience of modern technology. Whether you're a seasoned farmer looking to showcase your harvest or a discerning customer seeking the freshest produce and artisanal goods, FarmHouse is your destination.</p> 
+       							
+                  </div>
+              </div>
+              <div class="col-lg-4 col-md-12 col-sm-12">
+                  <div class="footer-link">
+                      <h4>Information</h4>
+                      <ul>
+                        <li><a href="{% url 'about' %}">About Us</a></li>
+                        <li><a href="{% url 'gallery' %}">Gallery</a></li>
+                        <li><a href="{% url 'view_cart' %}">Cart</a></li>
+                        <li><a href="{% url 'order_history' %}">Orders History</a></li>
+                        <li><a href="{% url 'update_profile' %}">Edit Account</a></li>
+                        <li><a href="{% url 'change_psw' %}">Change Password</a></li>
+                      </ul>
+                  </div>
+              </div>
+              <div class="col-lg-4 col-md-12 col-sm-12">
+                  <div class="footer-link-contact">
+                      <h4>Contact Us</h4>
+                      <ul>
+                          <li>
+                              <p><i class="fas fa-map-marker-alt"></i>Parkway Forest dr<br>North York<br> KS 67213 </p>
+                          </li>
+                          <li>
+                              <p><i class="fas fa-phone-square"></i>Phone: <a href="tel:+1-888705770">+1-888 705 770</a></p>
+                          </li>
+                          <li>
+                              <p><i class="fas fa-envelope"></i>Email: <a href="mailto:contactinfo@gmail.com">contactinfo@gmail.com</a></p>
+                          </li>
+                      </ul>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</footer>
+<!-- End Footer  -->
+
+<!-- Start copyright  -->
+<div class="footer-copyright">
+  <p class="footer-company">All Rights Reserved. &copy; 2018 <a href="#">FarmHouse</a> 
+      <a href="https://html.design/">html design</a></p>
+</div>
+<!-- End copyright  -->
+
+<a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
+
+</body>
+
+<!-- ALL JS FILES -->
+<script src="{% static 'main/js/jquery-3.2.1.min.js' %}"></script>
+<script src="{% static 'main/js/popper.min.js' %}"></script>
+<script src="{% static 'main/js/bootstrap.min.js' %}"></script>
+<!-- ALL PLUGINS -->
+<script src="{% static 'main/js/jquery.superslides.min.js' %}"></script>
+<script src="{% static 'main/js/bootstrap-select.js' %}"></script>
+<script src="{% static 'main/js/inewsticker.js' %}"></script>
+<script src="{% static 'main/js/bootsnav.js.' %}"></script>
+<script src="{% static 'main/js/images-loded.min.js' %}"></script>
+<script src="{% static 'main/js/isotope.min.js' %}"></script>
+<script src="{% static 'main/js/owl.carousel.min.js' %}"></script>
+<script src="{% static 'main/js/baguetteBox.min.js' %}"></script>
+<script src="{% static 'main/js/form-validator.min.js' %}"></script>
+<script src="{% static 'main/js/contact-form-script.js' %}"></script>
+<script src="{% static 'main/js/custom.js' %}"></script>
+</body>
+
+</html>

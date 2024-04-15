@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>FeedBack</title>
+      <style>
+  .c{
+    height: auto;
+    width: auto;
+
+    position: fixed;
+    top: 30%;
+    left: 40%;
+    margin-top: -100px;
+    margin-left: -200px;}
+  </style>
+</head>
+<body>
+{% if role is 1 %}
+{%include 'seller/seller.html'%}
+{% else %}
+{%include 'customer/customer.html'%}
+{% endif %}
+
+				<div class="main-panel">
+                    <div class="content-wrapper">
+				<div class="c col-md-6 grid-margin stretch-card" >
+				<div class="card">
+                <div class="card-body">
+                  <h1><strong>Enter Your FeedBack</strong></h1></br>
+				  </br>
+
+                  <form class="forms-sample" method="post" action="{% url 'feedback' %}">
+				  {% csrf_token %}
+                    <div class="form-group">
+                      <textarea class="form-control" rows="6"  placeholder="Type Here............." name="feedback"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                  </form>
+
+				  </br>
+				  </div></div>
+              </div></div></div>
+</div></div>
+
+</body>
+</html>

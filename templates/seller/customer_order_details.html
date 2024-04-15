@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>order details</title>
+
+      <style>
+  .c{
+    height: auto;
+    width: auto;
+
+    position: fixed;
+    top: 12%;
+    left: 19%;
+    margin-top: -100px;
+    margin-left: -200px;}
+  </style>
+
+</head>
+<body>
+{% if role is 1 %}
+{%include 'seller/seller.html'%}
+{% else %}
+{%include 'admin/admin.html'%}
+{% endif %}
+		<div class="main-panel">
+                    <div class="content-wrapper">
+				<div class="c col-md-12 grid-margin stretch-card" >
+                  <h1><strong>Customer & Order Details</strong></h1></br>
+                  <div class="table-responsive">
+                    <table class=" table">
+					{% csrf_token %}
+
+                        <tr>
+						<td>
+                            <strong>profile Picture:</strong>
+                          </td>
+                          <td class="py-1">
+                            <img src="/uploads/{{p.cid.profilepic}}" alt="image not loaded" style="height:100px; width:100px; border-radius:8px"/>
+                          </td>
+                        </tr>
+
+						<tr>
+						<td><strong>
+                            Customer Name:</strong>
+                          </td>
+                          <td class="py-1">
+                            {{p.cid.name}}
+                          </td>
+                        </tr>
+
+						<tr>
+						<td><strong>
+                            Customer Address:</strong>
+                          </td>
+                          <td class="py-1">
+                            {{p.cid.address}}
+                          </td>
+                        </tr>
+
+						<tr>
+						<td><strong>
+                            Customer Phone No:</strong>
+                          </td>
+                          <td class="py-1">
+                            {{p.cid.phone}}
+                          </td>
+                        </tr>
+
+						<tr>
+						<td><strong>
+                            Customer Email-id:</strong>
+                          </td>
+                          <td class="py-1">
+                            {{p.cid.email}}
+                          </td>
+                        </tr>
+
+						<tr>
+						<td><strong>
+                            Odered Product:</strong>
+                          </td>
+                          <td class="py-1">
+                            {{p.pid.pname}}
+                          </td>
+                        </tr>
+
+                        <tr>
+						<td><strong>
+                            Product Brand :</strong>
+                          </td>
+                          <td class="py-1">
+                            {{ p.pid.bname }}
+                          </td>
+                        </tr>
+
+                        <tr>
+						<td><strong>
+                            Product unit Quntity:</strong>
+                          </td>
+                          <td class="py-1">
+                            {{p.pid.qty}}
+                          </td>
+                        </tr>
+
+						<tr>
+						<td><strong>
+                            Product Quntity:</strong>
+                          </td>
+                          <td class="py-1">
+                            {{p.qty}}
+                          </td>
+                        </tr>
+
+                        <tr>
+						<td><strong>
+                            Product Unit Price:</strong>
+                          </td>
+                          <td class="py-1">
+                            {{p.pid.sprice}}
+                          </td>
+                        </tr>
+
+                         <tr>
+						<td><strong>
+                            Product Total Price:</strong>
+                          </td>
+                          <td class="py-1">
+                            {{p.price}}
+                          </td>
+                        </tr>
+
+						<tr>
+						<td><strong>
+                           Odered Date</strong>
+                          </td>
+                          <td class="py-1">
+                            {{p.sdate}}
+                          </td>
+                        </tr>
+
+                    </table>
+                  </div></div></div></div>
+</div></div>
+</body>
+
+</html>
