@@ -1,0 +1,761 @@
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Apr 15, 2024 at 07:08 PM
+-- Server version: 8.3.0
+-- PHP Version: 8.0.30
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `market`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `auth_group`
+--
+
+CREATE TABLE `auth_group` (
+  `id` int NOT NULL,
+  `name` varchar(150) COLLATE utf8mb4_general_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `auth_group_permissions`
+--
+
+CREATE TABLE `auth_group_permissions` (
+  `id` int NOT NULL,
+  `group_id` int NOT NULL,
+  `permission_id` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `auth_permission`
+--
+
+CREATE TABLE `auth_permission` (
+  `id` int NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `content_type_id` int NOT NULL,
+  `codename` varchar(100) COLLATE utf8mb4_general_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `auth_permission`
+--
+
+INSERT INTO `auth_permission` (`id`, `name`, `content_type_id`, `codename`) VALUES
+(1, 'Can add log entry', 1, 'add_logentry'),
+(2, 'Can change log entry', 1, 'change_logentry'),
+(3, 'Can delete log entry', 1, 'delete_logentry'),
+(4, 'Can view log entry', 1, 'view_logentry'),
+(5, 'Can add permission', 2, 'add_permission'),
+(6, 'Can change permission', 2, 'change_permission'),
+(7, 'Can delete permission', 2, 'delete_permission'),
+(8, 'Can view permission', 2, 'view_permission'),
+(9, 'Can add group', 3, 'add_group'),
+(10, 'Can change group', 3, 'change_group'),
+(11, 'Can delete group', 3, 'delete_group'),
+(12, 'Can view group', 3, 'view_group'),
+(13, 'Can add user', 4, 'add_user'),
+(14, 'Can change user', 4, 'change_user'),
+(15, 'Can delete user', 4, 'delete_user'),
+(16, 'Can view user', 4, 'view_user'),
+(17, 'Can add content type', 5, 'add_contenttype'),
+(18, 'Can change content type', 5, 'change_contenttype'),
+(19, 'Can delete content type', 5, 'delete_contenttype'),
+(20, 'Can view content type', 5, 'view_contenttype'),
+(21, 'Can add session', 6, 'add_session'),
+(22, 'Can change session', 6, 'change_session'),
+(23, 'Can delete session', 6, 'delete_session'),
+(24, 'Can view session', 6, 'view_session'),
+(25, 'Can add review', 7, 'add_review'),
+(26, 'Can change review', 7, 'change_review'),
+(27, 'Can delete review', 7, 'delete_review'),
+(28, 'Can view review', 7, 'view_review'),
+(29, 'Can add payment', 8, 'add_payment'),
+(30, 'Can change payment', 8, 'change_payment'),
+(31, 'Can delete payment', 8, 'delete_payment'),
+(32, 'Can view payment', 8, 'view_payment'),
+(33, 'Can add cart', 9, 'add_cart'),
+(34, 'Can change cart', 9, 'change_cart'),
+(35, 'Can delete cart', 9, 'delete_cart'),
+(36, 'Can view cart', 9, 'view_cart'),
+(37, 'Can add product', 10, 'add_product'),
+(38, 'Can change product', 10, 'change_product'),
+(39, 'Can delete product', 10, 'delete_product'),
+(40, 'Can view product', 10, 'view_product'),
+(41, 'Can add login', 11, 'add_login'),
+(42, 'Can change login', 11, 'change_login'),
+(43, 'Can delete login', 11, 'delete_login'),
+(44, 'Can view login', 11, 'view_login'),
+(45, 'Can add user', 12, 'add_user'),
+(46, 'Can change user', 12, 'change_user'),
+(47, 'Can delete user', 12, 'delete_user'),
+(48, 'Can view user', 12, 'view_user'),
+(49, 'Can add feedback', 13, 'add_feedback'),
+(50, 'Can change feedback', 13, 'change_feedback'),
+(51, 'Can delete feedback', 13, 'delete_feedback'),
+(52, 'Can view feedback', 13, 'view_feedback');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `auth_user`
+--
+
+CREATE TABLE `auth_user` (
+  `id` int NOT NULL,
+  `password` varchar(128) COLLATE utf8mb4_general_ci NOT NULL,
+  `last_login` datetime(6) DEFAULT NULL,
+  `is_superuser` tinyint(1) NOT NULL,
+  `username` varchar(150) COLLATE utf8mb4_general_ci NOT NULL,
+  `first_name` varchar(150) COLLATE utf8mb4_general_ci NOT NULL,
+  `last_name` varchar(150) COLLATE utf8mb4_general_ci NOT NULL,
+  `email` varchar(254) COLLATE utf8mb4_general_ci NOT NULL,
+  `is_staff` tinyint(1) NOT NULL,
+  `is_active` tinyint(1) NOT NULL,
+  `date_joined` datetime(6) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `auth_user_groups`
+--
+
+CREATE TABLE `auth_user_groups` (
+  `id` int NOT NULL,
+  `user_id` int NOT NULL,
+  `group_id` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `auth_user_user_permissions`
+--
+
+CREATE TABLE `auth_user_user_permissions` (
+  `id` int NOT NULL,
+  `user_id` int NOT NULL,
+  `permission_id` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `customer_cart`
+--
+
+CREATE TABLE `customer_cart` (
+  `id` int NOT NULL,
+  `qty` int NOT NULL,
+  `price` int NOT NULL,
+  `status1` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
+  `status2` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
+  `date` date NOT NULL,
+  `sdate` date NOT NULL,
+  `cid_id` int NOT NULL,
+  `pid_id` int NOT NULL,
+  `sid_id` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `customer_cart`
+--
+
+INSERT INTO `customer_cart` (`id`, `qty`, `price`, `status1`, `status2`, `date`, `sdate`, `cid_id`, `pid_id`, `sid_id`) VALUES
+(44, 1, 17, 'buy', 'accepted', '2024-04-11', '2024-04-11', 10, 19, 11),
+(45, 1, 17, 'buy', 'pending', '2024-04-12', '2024-04-12', 10, 19, 11);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `customer_payment`
+--
+
+CREATE TABLE `customer_payment` (
+  `id` int NOT NULL,
+  `money` int NOT NULL,
+  `date` date NOT NULL,
+  `pcid_id` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `customer_payment`
+--
+
+INSERT INTO `customer_payment` (`id`, `money`, `date`, `pcid_id`) VALUES
+(4, 120, '2021-04-19', 6),
+(5, 293, '2021-04-19', 7),
+(6, 70, '2024-04-04', 6),
+(7, 110, '2024-04-04', 6),
+(8, 432, '2024-04-11', 6),
+(9, 67, '2024-04-11', 10),
+(10, 67, '2024-04-12', 10);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `customer_review`
+--
+
+CREATE TABLE `customer_review` (
+  `id` int NOT NULL,
+  `review` longtext COLLATE utf8mb4_general_ci NOT NULL,
+  `date` date NOT NULL,
+  `cid_id` int NOT NULL,
+  `pid_id` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `django_admin_log`
+--
+
+CREATE TABLE `django_admin_log` (
+  `id` int NOT NULL,
+  `action_time` datetime(6) NOT NULL,
+  `object_id` longtext COLLATE utf8mb4_general_ci,
+  `object_repr` varchar(200) COLLATE utf8mb4_general_ci NOT NULL,
+  `action_flag` smallint UNSIGNED NOT NULL,
+  `change_message` longtext COLLATE utf8mb4_general_ci NOT NULL,
+  `content_type_id` int DEFAULT NULL,
+  `user_id` int NOT NULL
+) ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `django_content_type`
+--
+
+CREATE TABLE `django_content_type` (
+  `id` int NOT NULL,
+  `app_label` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `model` varchar(100) COLLATE utf8mb4_general_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `django_content_type`
+--
+
+INSERT INTO `django_content_type` (`id`, `app_label`, `model`) VALUES
+(1, 'admin', 'logentry'),
+(3, 'auth', 'group'),
+(2, 'auth', 'permission'),
+(4, 'auth', 'user'),
+(5, 'contenttypes', 'contenttype'),
+(9, 'customer', 'cart'),
+(8, 'customer', 'payment'),
+(7, 'customer', 'review'),
+(13, 'login', 'feedback'),
+(11, 'login', 'login'),
+(12, 'login', 'user'),
+(10, 'seller', 'product'),
+(6, 'sessions', 'session');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `django_migrations`
+--
+
+CREATE TABLE `django_migrations` (
+  `id` int NOT NULL,
+  `app` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `applied` datetime(6) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `django_migrations`
+--
+
+INSERT INTO `django_migrations` (`id`, `app`, `name`, `applied`) VALUES
+(1, 'contenttypes', '0001_initial', '2021-04-18 06:02:58.407938'),
+(2, 'auth', '0001_initial', '2021-04-18 06:03:01.553811'),
+(3, 'admin', '0001_initial', '2021-04-18 06:03:13.411668'),
+(4, 'admin', '0002_logentry_remove_auto_add', '2021-04-18 06:03:15.431944'),
+(5, 'admin', '0003_logentry_add_action_flag_choices', '2021-04-18 06:03:15.513090'),
+(6, 'contenttypes', '0002_remove_content_type_name', '2021-04-18 06:03:16.424659'),
+(7, 'auth', '0002_alter_permission_name_max_length', '2021-04-18 06:03:17.647043'),
+(8, 'auth', '0003_alter_user_email_max_length', '2021-04-18 06:03:17.929436'),
+(9, 'auth', '0004_alter_user_username_opts', '2021-04-18 06:03:18.016816'),
+(10, 'auth', '0005_alter_user_last_login_null', '2021-04-18 06:03:18.971034'),
+(11, 'auth', '0006_require_contenttypes_0002', '2021-04-18 06:03:19.166668'),
+(12, 'auth', '0007_alter_validators_add_error_messages', '2021-04-18 06:03:19.247495'),
+(13, 'auth', '0008_alter_user_username_max_length', '2021-04-18 06:03:19.455248'),
+(14, 'auth', '0009_alter_user_last_name_max_length', '2021-04-18 06:03:19.628761'),
+(15, 'auth', '0010_alter_group_name_max_length', '2021-04-18 06:03:19.870761'),
+(16, 'auth', '0011_update_proxy_permissions', '2021-04-18 06:03:20.026211'),
+(17, 'auth', '0012_alter_user_first_name_max_length', '2021-04-18 06:03:20.630599'),
+(18, 'login', '0001_initial', '2021-04-18 06:03:22.268099'),
+(19, 'seller', '0001_initial', '2021-04-18 06:03:24.775248'),
+(20, 'customer', '0001_initial', '2021-04-18 06:03:27.257308'),
+(21, 'sessions', '0001_initial', '2021-04-18 06:03:36.482818'),
+(22, 'customer', '0002_auto_20210418_1142', '2021-04-18 06:12:24.069509'),
+(23, 'customer', '0003_remove_cart_payid', '2021-04-18 06:13:59.055722');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `django_session`
+--
+
+CREATE TABLE `django_session` (
+  `session_key` varchar(40) COLLATE utf8mb4_general_ci NOT NULL,
+  `session_data` longtext COLLATE utf8mb4_general_ci NOT NULL,
+  `expire_date` datetime(6) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `django_session`
+--
+
+INSERT INTO `django_session` (`session_key`, `session_data`, `expire_date`) VALUES
+('7dbjdcqngrtqznufeduuy8mgzflccl0p', 'e30:1rvIMg:Q0V6t5fIqNXdlEHdldmQKy1IFBap6yOIkAR6zkpeTmc', '2024-04-26 14:58:54.408538'),
+('epw12aygpsty4psgvii1eomatqqxxad5', 'eyJ1c2VyaWQiOjUsInJvbGUiOjF9:1mNpSW:gPpDFkVq6aAayzfFxKHxQQ4xoN2el9PL2CJvHv-sCcM', '2021-09-22 04:45:16.155308'),
+('jnfh2czl840qqgckm29b5t251zr8thsa', 'eyJ1c2VyaWQiOjEsInJvbGUiOjB9:1lYUYQ:-usMkx3HgY-n-ZU78M8atYYi0HDk1EAbiJ37Hp6Hpgk', '2021-05-03 14:07:10.589132'),
+('odtenyn78c4zn4pco4b6iqir5n8mzzoz', 'eyJ1c2VyaWQiOjcsInJvbGUiOjJ9:1r0TJ1:MAUqGKxZQ1zx_chEo-lyAE0dVu_wdF-pdttMJfoaZSI', '2023-11-21 21:08:15.588190'),
+('oncmqeyb49kg6ohkx916tdhoc1fcadn9', 'eyJ1c2VyaWQiOjcsInJvbGUiOjJ9:1rttRH:EUtrp-pmI3L6BC3ouSZp8U3UVVwzwxKqxuaP2vSE9g0', '2024-04-22 18:09:51.301714'),
+('rhmtsbviasqnluq226pe570pgxy9l1z8', 'eyJ1c2VyaWQiOjcsInJvbGUiOjJ9:1nL4tj:BqJCHXrmkoEBiguExIoT8BLcfXcipq0PDpkA2LO6e7U', '2022-03-04 15:10:15.760678');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `login_feedback`
+--
+
+CREATE TABLE `login_feedback` (
+  `id` int NOT NULL,
+  `feedback` longtext COLLATE utf8mb4_general_ci NOT NULL,
+  `role` int NOT NULL,
+  `date` date NOT NULL,
+  `userid_id` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `login_feedback`
+--
+
+INSERT INTO `login_feedback` (`id`, `feedback`, `role`, `date`, `userid_id`) VALUES
+(2, 'I am Not able to login', 2, '2021-04-19', 6),
+(3, 'Accept my account', 2, '2021-04-19', 6);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `login_login`
+--
+
+CREATE TABLE `login_login` (
+  `id` int NOT NULL,
+  `username` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `password` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `role` int NOT NULL,
+  `date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `login_login`
+--
+
+INSERT INTO `login_login` (`id`, `username`, `password`, `role`, `date`) VALUES
+(1, 'admin', '1234', 0, '2024-04-12'),
+(7, 'rence', 'Albin@123', 2, '2024-04-11'),
+(8, 'anfin', 'Albin@123', 2, '2021-04-19'),
+(10, 'FarmerJohn', 'John@123', 1, '2024-04-12'),
+(11, 'sushma', 'Sushma@123', 2, '2024-04-12'),
+(12, 'Phil', 'Phil@123', 1, '2024-04-12');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `login_user`
+--
+
+CREATE TABLE `login_user` (
+  `id` int NOT NULL,
+  `name` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `address` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `email` varchar(254) COLLATE utf8mb4_general_ci NOT NULL,
+  `phone` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
+  `profilepic` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `role` int NOT NULL,
+  `status` varchar(10) COLLATE utf8mb4_general_ci NOT NULL,
+  `date` date NOT NULL,
+  `loginid_id` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `login_user`
+--
+
+INSERT INTO `login_user` (`id`, `name`, `address`, `email`, `phone`, `profilepic`, `role`, `status`, `date`, `loginid_id`) VALUES
+(6, 'Rence Thomas', 'Kuttikkanm, Idukki,Kerala', 'rence@gmail.com', '987654322', 'images/IMG_20201226_093025.jpg', 2, 'accept', '2021-04-19', 7),
+(7, 'Anfin', 'Kodimarathummoottil House', 'anfin@gmail.com', '987654323', 'images/default.jpeg', 2, 'accept', '2021-04-19', 8),
+(9, 'John', 'jane street , pickering', 'John@gmail.com', '4376785678', 'images/istockphoto-1269841295-612x612_FQDpHbM.jpg', 1, 'accept', '2024-04-11', 10),
+(10, 'sushma', '300 antibes dr, north york', 'sushma@gmail.com', '4374217070', 'images/default.jpeg', 2, 'accept', '2024-04-11', 11),
+(11, 'RedBarn', 'sheppard st, kitchener', 'redbarn@gmail', '437678965', 'images/images_5JfpXMw.jpeg', 1, 'accept', '2024-04-11', 12);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `seller_product`
+--
+
+CREATE TABLE `seller_product` (
+  `id` int NOT NULL,
+  `pname` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `bname` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `qty` varchar(10) COLLATE utf8mb4_general_ci NOT NULL,
+  `pd` longtext COLLATE utf8mb4_general_ci NOT NULL,
+  `p_pic` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `cprice` int NOT NULL,
+  `sprice` int NOT NULL,
+  `status` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
+  `rating` int NOT NULL,
+  `userid_id` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `seller_product`
+--
+
+INSERT INTO `seller_product` (`id`, `pname`, `bname`, `qty`, `pd`, `p_pic`, `cprice`, `sprice`, `status`, `rating`, `userid_id`) VALUES
+(14, 'Organic , Free Range Eggs', '', '12pcs', '', 'images/egg_B62kfPQ.jpg', 15, 15, 'available', 0, 9),
+(15, 'Organic Tomatoes', '', '1LB', '', 'images/unrecognizable-farmer-holding-tomatoes-his-hand-while-standing-organic-food-farm.jpg', 5, 5, 'available', 0, 9),
+(17, 'Brie cheese', 'Red Barn', '1LB', 'Indulge in the luxurious taste of our premium Brie cheese, a quintessential French delicacy crafted to perfection. Savor the creamy richness and buttery texture that melts in your mouth with every bite. Our Brie is carefully selected for its exceptional quality, ensuring a delightful experience for cheese connoisseurs and enthusiasts alike.', 'images/GettyImages-723499959.webp', 23, 23, 'available', 0, 11),
+(18, 'Organic Strawberries', 'Red Barn', '1lb', 'Succulent strawberries, nature\'s jewels bursting with vibrant flavor and irresistible sweetness. Grown with care and harvested at the peak of ripeness, our strawberries are a celebration of freshness and taste.', 'images/84998.jpg', 9, 9, 'available', 0, 11),
+(19, 'Strawberry Jam, 100% real strawberries.', 'Red Barn', '200ml', 'Made with simple, natural ingredients and free from artificial flavors or preservatives, our Strawberry Jam offers a guilt-free indulgence that\'s as wholesome as it is delicious. Spread it generously, share it with loved ones, and savor the pure joy of homemade goodness in every bite.', 'images/Strawberry-Jam-4_MJ7Kd2Y.jpg', 17, 17, 'available', 0, 11),
+(20, 'Organic Milk', 'FarmerJohn', '1lt', 'Start your day with the wholesome goodness of our Organic Milk, delivered fresh to your doorstep every morning! Sourced from local, pasture-raised cows, our milk is free from synthetic hormones and pesticides, ensuring the purest quality for you and your family.', 'images/0a71bb_ad3507a6ee1944d2adfae5127277de48mv2.webp', 10, 10, 'available', 0, 9);
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `auth_group`
+--
+ALTER TABLE `auth_group`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `name` (`name`);
+
+--
+-- Indexes for table `auth_group_permissions`
+--
+ALTER TABLE `auth_group_permissions`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `auth_group_permissions_group_id_permission_id_0cd325b0_uniq` (`group_id`,`permission_id`),
+  ADD KEY `auth_group_permissio_permission_id_84c5c92e_fk_auth_perm` (`permission_id`);
+
+--
+-- Indexes for table `auth_permission`
+--
+ALTER TABLE `auth_permission`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `auth_permission_content_type_id_codename_01ab375a_uniq` (`content_type_id`,`codename`);
+
+--
+-- Indexes for table `auth_user`
+--
+ALTER TABLE `auth_user`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `username` (`username`);
+
+--
+-- Indexes for table `auth_user_groups`
+--
+ALTER TABLE `auth_user_groups`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `auth_user_groups_user_id_group_id_94350c0c_uniq` (`user_id`,`group_id`),
+  ADD KEY `auth_user_groups_group_id_97559544_fk_auth_group_id` (`group_id`);
+
+--
+-- Indexes for table `auth_user_user_permissions`
+--
+ALTER TABLE `auth_user_user_permissions`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `auth_user_user_permissions_user_id_permission_id_14a6b632_uniq` (`user_id`,`permission_id`),
+  ADD KEY `auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm` (`permission_id`);
+
+--
+-- Indexes for table `customer_cart`
+--
+ALTER TABLE `customer_cart`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `customer_cart_cid_id_d0bab77e_fk_login_user_id` (`cid_id`),
+  ADD KEY `customer_cart_pid_id_7689792b_fk_seller_product_id` (`pid_id`),
+  ADD KEY `customer_cart_sid_id_014eef90_fk_login_user_id` (`sid_id`);
+
+--
+-- Indexes for table `customer_payment`
+--
+ALTER TABLE `customer_payment`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `customer_payment_pcid_id_00e7dd15_fk_login_user_id` (`pcid_id`);
+
+--
+-- Indexes for table `customer_review`
+--
+ALTER TABLE `customer_review`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `customer_review_cid_id_4bc90ee2_fk_login_user_id` (`cid_id`),
+  ADD KEY `customer_review_pid_id_75b88462_fk_seller_product_id` (`pid_id`);
+
+--
+-- Indexes for table `django_admin_log`
+--
+ALTER TABLE `django_admin_log`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `django_admin_log_content_type_id_c4bce8eb_fk_django_co` (`content_type_id`),
+  ADD KEY `django_admin_log_user_id_c564eba6_fk_auth_user_id` (`user_id`);
+
+--
+-- Indexes for table `django_content_type`
+--
+ALTER TABLE `django_content_type`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `django_content_type_app_label_model_76bd3d3b_uniq` (`app_label`,`model`);
+
+--
+-- Indexes for table `django_migrations`
+--
+ALTER TABLE `django_migrations`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `django_session`
+--
+ALTER TABLE `django_session`
+  ADD PRIMARY KEY (`session_key`),
+  ADD KEY `django_session_expire_date_a5c62663` (`expire_date`);
+
+--
+-- Indexes for table `login_feedback`
+--
+ALTER TABLE `login_feedback`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `login_feedback_userid_id_2bb71419_fk_login_user_id` (`userid_id`);
+
+--
+-- Indexes for table `login_login`
+--
+ALTER TABLE `login_login`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `login_user`
+--
+ALTER TABLE `login_user`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `login_user_loginid_id_17c18ab7_fk_login_login_id` (`loginid_id`);
+
+--
+-- Indexes for table `seller_product`
+--
+ALTER TABLE `seller_product`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `seller_product_userid_id_28f186f6_fk_login_user_id` (`userid_id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `auth_group`
+--
+ALTER TABLE `auth_group`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `auth_group_permissions`
+--
+ALTER TABLE `auth_group_permissions`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `auth_permission`
+--
+ALTER TABLE `auth_permission`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+
+--
+-- AUTO_INCREMENT for table `auth_user`
+--
+ALTER TABLE `auth_user`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `auth_user_groups`
+--
+ALTER TABLE `auth_user_groups`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `auth_user_user_permissions`
+--
+ALTER TABLE `auth_user_user_permissions`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `customer_cart`
+--
+ALTER TABLE `customer_cart`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+
+--
+-- AUTO_INCREMENT for table `customer_payment`
+--
+ALTER TABLE `customer_payment`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT for table `customer_review`
+--
+ALTER TABLE `customer_review`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `django_admin_log`
+--
+ALTER TABLE `django_admin_log`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `django_content_type`
+--
+ALTER TABLE `django_content_type`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT for table `django_migrations`
+--
+ALTER TABLE `django_migrations`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+
+--
+-- AUTO_INCREMENT for table `login_feedback`
+--
+ALTER TABLE `login_feedback`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `login_login`
+--
+ALTER TABLE `login_login`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT for table `login_user`
+--
+ALTER TABLE `login_user`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT for table `seller_product`
+--
+ALTER TABLE `seller_product`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `auth_group_permissions`
+--
+ALTER TABLE `auth_group_permissions`
+  ADD CONSTRAINT `auth_group_permissio_permission_id_84c5c92e_fk_auth_perm` FOREIGN KEY (`permission_id`) REFERENCES `auth_permission` (`id`),
+  ADD CONSTRAINT `auth_group_permissions_group_id_b120cbf9_fk_auth_group_id` FOREIGN KEY (`group_id`) REFERENCES `auth_group` (`id`);
+
+--
+-- Constraints for table `auth_permission`
+--
+ALTER TABLE `auth_permission`
+  ADD CONSTRAINT `auth_permission_content_type_id_2f476e4b_fk_django_co` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`);
+
+--
+-- Constraints for table `auth_user_groups`
+--
+ALTER TABLE `auth_user_groups`
+  ADD CONSTRAINT `auth_user_groups_group_id_97559544_fk_auth_group_id` FOREIGN KEY (`group_id`) REFERENCES `auth_group` (`id`),
+  ADD CONSTRAINT `auth_user_groups_user_id_6a12ed8b_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`);
+
+--
+-- Constraints for table `auth_user_user_permissions`
+--
+ALTER TABLE `auth_user_user_permissions`
+  ADD CONSTRAINT `auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm` FOREIGN KEY (`permission_id`) REFERENCES `auth_permission` (`id`),
+  ADD CONSTRAINT `auth_user_user_permissions_user_id_a95ead1b_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`);
+
+--
+-- Constraints for table `customer_cart`
+--
+ALTER TABLE `customer_cart`
+  ADD CONSTRAINT `customer_cart_cid_id_d0bab77e_fk_login_user_id` FOREIGN KEY (`cid_id`) REFERENCES `login_user` (`id`),
+  ADD CONSTRAINT `customer_cart_pid_id_7689792b_fk_seller_product_id` FOREIGN KEY (`pid_id`) REFERENCES `seller_product` (`id`),
+  ADD CONSTRAINT `customer_cart_sid_id_014eef90_fk_login_user_id` FOREIGN KEY (`sid_id`) REFERENCES `login_user` (`id`);
+
+--
+-- Constraints for table `customer_payment`
+--
+ALTER TABLE `customer_payment`
+  ADD CONSTRAINT `customer_payment_pcid_id_00e7dd15_fk_login_user_id` FOREIGN KEY (`pcid_id`) REFERENCES `login_user` (`id`);
+
+--
+-- Constraints for table `customer_review`
+--
+ALTER TABLE `customer_review`
+  ADD CONSTRAINT `customer_review_cid_id_4bc90ee2_fk_login_user_id` FOREIGN KEY (`cid_id`) REFERENCES `login_user` (`id`),
+  ADD CONSTRAINT `customer_review_pid_id_75b88462_fk_seller_product_id` FOREIGN KEY (`pid_id`) REFERENCES `seller_product` (`id`);
+
+--
+-- Constraints for table `django_admin_log`
+--
+ALTER TABLE `django_admin_log`
+  ADD CONSTRAINT `django_admin_log_content_type_id_c4bce8eb_fk_django_co` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`),
+  ADD CONSTRAINT `django_admin_log_user_id_c564eba6_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`);
+
+--
+-- Constraints for table `login_feedback`
+--
+ALTER TABLE `login_feedback`
+  ADD CONSTRAINT `login_feedback_userid_id_2bb71419_fk_login_user_id` FOREIGN KEY (`userid_id`) REFERENCES `login_user` (`id`);
+
+--
+-- Constraints for table `login_user`
+--
+ALTER TABLE `login_user`
+  ADD CONSTRAINT `login_user_loginid_id_17c18ab7_fk_login_login_id` FOREIGN KEY (`loginid_id`) REFERENCES `login_login` (`id`);
+
+--
+-- Constraints for table `seller_product`
+--
+ALTER TABLE `seller_product`
+  ADD CONSTRAINT `seller_product_userid_id_28f186f6_fk_login_user_id` FOREIGN KEY (`userid_id`) REFERENCES `login_user` (`id`);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
